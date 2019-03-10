@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Cadê a letra?</title>
+
+  <!-- css -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link href="{{ url_for('static', filename='font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
+  <link href="{{ url_for('static', filename='css/nivo-lightbox.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='css/nivo-lightbox-theme/default/default.css') }}" rel="stylesheet" type="text/css" />
+  <link href="{{ url_for('static', filename='css/animations.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='color/default.css') }}" rel="stylesheet">
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+
+  <section class="hero" id="intro">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-right navicon">
+          <a id="nav-toggle" class="nav_slide_button" href="#"><span></span></a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center inner">
+          <div class="animatedParent">
+            <h1 class="animated fadeInDown">Cadê a letra?</h1>
+            <p class="animated fadeInUp">Quer saber qual é a letra da música que você tá ouvindo no spotify? Faça login e pode começar a cantar (sem errar a letra)!</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 text-center">
+          <a href="/login" class="learn-more-btn btn-scroll">Login</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <ul class="footer-menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Press release</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 text-right copyright">
+          &copy;Copyright - Bocor. All Rights Reserved
+          <div class="credits">
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript Files -->
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.sticky.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.easing.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.scrollTo.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.appear.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/stellar.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/nivo-lightbox.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/css3-animate-it.js') }}"></script>
+  <script src="{{ url_for('static', filename='contactform/contactform.js') }}"></script>
+
+</body>
+</html>
