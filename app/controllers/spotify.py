@@ -11,13 +11,16 @@ url_recently_played = "https://api.spotify.com/v1/me/player/recently-played"
 
 def get_currently_playing():
     if "authorization" not in session:
-        return redirect("/")
+        return None, None
 
     authorization = Authorization.query.filter_by(id=session['authorization']).first()
-
     headers = {'Authorization': 'Bearer ' + authorization.access_token}
     r = requests.get(url_currently_playing, headers=headers)
-    if (r.text == ""):
+    
+    if r.text == "":
+        return None, None
+    elif 'error' in r.json() and r.json()['error']['status'] == 401:
+        session.pop("authorization")
         return None, None
 
     data = r.json()
@@ -27,14 +30,18 @@ def get_currently_playing():
 
 def get_most_recently_playing():
     if "authorization" not in session:
-        return redirect("/")
+        return None, None
 
     authorization = Authorization.query.filter_by(id=session['authorization']).first()
-
     headers = {'Authorization': 'Bearer ' + authorization.access_token}
     r = requests.get(url_recently_played, headers=headers)
+    
     if (r.text == ""):
-        return None, None    
+        return None, None  
+    elif 'error' in r.json() and r.json()['error']['status'] == 401:
+        session.pop("authorization")
+        return None, None
+
     data = r.json()
     artist = data["items"][0]["track"]["artists"][0]["name"]
     music = data["items"][0]["track"]["name"]
