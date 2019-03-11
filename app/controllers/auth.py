@@ -4,7 +4,7 @@ from app.models.tables import Authorization
 import requests
 from flask import redirect, request, session
 from flask_session.__init__ import Session
-
+from datetime import timedelta
 
 url_authorize = "https://accounts.spotify.com/authorize"
 url_redirect_login = "http://localhost:3000/spotify-login"
@@ -50,6 +50,8 @@ def spotify_login():
     refresh_token = data['refresh_token']
     scope = data['scope']
     authorization = Authorization(access_token, token_type, expires_in, refresh_token, scope)
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(minutes=59)
     session["authorization"] = authorization.create_authorization()
 
     return redirect("/user/update")
