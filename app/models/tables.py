@@ -61,3 +61,35 @@ class User(db.Model):
             user = self
         db.session.add(user)
         db.session.commit()
+
+
+class Music(db.Model):
+    __tablename__ = "Music"
+
+    id = db.Column(db.Integer, primary_key=True)
+    artist = db.Column(db.String, nullable=False)
+    music = db.Column(db.String, nullable=False)
+    song_lyrics = db.Column(db.Text, nullable=False)
+    searched_artist = db.Column(db.String, nullable=False)
+    searched_music = db.Column(db.String, nullable=False)
+
+    def __init__(self, artist, music, song_lyrics, searched_artist, searched_music):
+        self.artist = artist
+        self.music = music
+        self.song_lyrics = song_lyrics
+        self.searched_artist = searched_artist
+        self.searched_music = searched_music
+
+    def __repr__(self):
+        return f'<Music {self.music}>'
+
+    def insert_music(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def get_Music(artist, music):
+        result = Music.query.filter_by(searched_artist=artist, searched_music=music).first()
+        if result:
+            return result.music, result.artist, result.song_lyrics
+        return None, None, None
+        
