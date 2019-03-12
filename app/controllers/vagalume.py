@@ -13,18 +13,13 @@ def get_music_vagalume(artist, music):
 
     result = r.json()
     if "notfound" in result["type"]:
-        return None, None, "Letra não encontrada =("
+        return None, None, "Letra não encontrada =(", None
     else : 
         song_lyrics = result["mus"][0]["text"]
         artist = result["art"]["name"]
         music = result["mus"][0]["name"]
-        return music, artist, song_lyrics
+        translate = None
+        if "translate" in result["mus"][0] and result["mus"][0]["translate"][0]["lang"] == 1:
+            translate = result["mus"][0]["translate"][0]["text"]
+        return music, artist, song_lyrics, translate
 
-def get_translation_song_lyrics(artist, music):
-    result = lyrics.find(artist, music)
-    translation = result.get_translation_to('pt-br')
-
-    if not translation:
-        return music, 'Translation not found'
-    else:
-        return translation.name, translation.lyric
