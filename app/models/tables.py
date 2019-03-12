@@ -72,13 +72,15 @@ class Music(db.Model):
     song_lyrics = db.Column(db.Text, nullable=False)
     searched_artist = db.Column(db.String, nullable=False)
     searched_music = db.Column(db.String, nullable=False)
+    translate = db.Column(db.String)
 
-    def __init__(self, artist, music, song_lyrics, searched_artist, searched_music):
+    def __init__(self, artist, music, song_lyrics, searched_artist, searched_music, translate=None):
         self.artist = artist
         self.music = music
         self.song_lyrics = song_lyrics
         self.searched_artist = searched_artist
         self.searched_music = searched_music
+        self.translate = translate
 
     def __repr__(self):
         return f'<Music {self.music}>'
@@ -90,6 +92,7 @@ class Music(db.Model):
     def get_Music(artist, music):
         result = Music.query.filter_by(searched_artist=artist, searched_music=music).first()
         if result:
-            return result.music, result.artist, result.song_lyrics
-        return None, None, None
+            print(result.translate)
+            return result.music, result.artist, result.song_lyrics, result.translate
+        return None, None, None, None
         

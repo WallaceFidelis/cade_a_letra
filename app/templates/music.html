@@ -45,13 +45,27 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-4 col-lg-offset-4 animatedParent">
-          <div class="text-center">
+          <div id="div-original" class="text-center">
             <p>
             {% for row in song_lyrics %}
                 {{row}}<br>
             {% endfor %}
             </p>
-            <a href="#service" class="btn btn-skin btn-scroll">Quer ver a tradução?</a>
+            {% if translate %}
+            <a id="translate" href="#" class="btn btn-skin btn-scroll">Quer ver a tradução?</a>
+            {% endif %}
+          </div>
+          <div id="div-translate" class="text-center" style="display: none;">
+            <p>
+            {% if translate %}
+              {% for row in translate %}
+                  {{row}}<br>
+              {% endfor %}
+            {% endif %}
+            </p>
+            {% if translate %}
+            <a id="original" href="#" class="btn btn-skin btn-scroll">Quer ver a letra original?</a>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -90,5 +104,15 @@
   <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
   <script src="{{ url_for('static', filename='js/css3-animate-it.js') }}"></script>
   <script src="{{ url_for('static', filename='contactform/contactform.js') }}"></script>
+  <script>
+      $("#translate").click(function(e){
+        $("#div-original").hide();
+        $("#div-translate").show();
+      }); 
+      $("#original").click(function(e){
+        $("#div-translate").hide();
+        $("#div-original").show();
+      }); 
+  </script>
 </body>
 </html>

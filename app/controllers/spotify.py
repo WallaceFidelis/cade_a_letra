@@ -24,6 +24,9 @@ def get_currently_playing():
         return None, None
 
     data = r.json()
+    if "currently_playing_type" in data and data["currently_playing_type"] == "ad":
+        return None, None
+        
     artist = data["item"]["artists"][0]["name"]
     music = data["item"]["name"]
     return artist, music
